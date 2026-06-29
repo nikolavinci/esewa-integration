@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Demo product page with eSewa payment gateway integration using sandbox test credentials." />
+  <title>eSewa Demo – Buy Now</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Toast Notification (success / failure callback) -->
+  <div id="toast" class="toast hidden" role="alert" aria-live="polite">
+    <span id="toastIcon" class="toast-icon"></span>
+    <div id="toastMsg" class="toast-msg"></div>
+  </div>
+
+  <main class="container">
+
+    <!-- Product Card -->
+    <article class="card" id="productCard">
+
+      <!-- Product Image -->
+      <div class="product-image-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=760&q=80"
+          alt="Premium watch product image"
+          loading="eager"
+        />
+      </div>
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <span class="badge">In Stock</span>
+
+        <h1 class="product-title">Classic Minimalist Watch</h1>
+        <p class="product-description">
+          A sleek, timeless timepiece crafted for the modern individual.
+          Sapphire crystal glass, stainless steel case, 5ATM water resistance.
+        </p>
+
+        <div class="price-row">
+          <span class="price">Rs. 1,000</span>
+          <span class="price-currency">NPR</span>
+        </div>
+
+        <!-- eSewa Checkout Button -->
+        <button id="checkoutBtn" class="checkout-btn" type="button">
+          <!-- eSewa-style lock icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          Pay with eSewa
+        </button>
+      </div>
+    </article>
+
+    <footer class="footer">
+      <p>Sandbox mode &mdash; No real transactions are processed.</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

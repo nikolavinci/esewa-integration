@@ -1,0 +1,238 @@
+/* =============================================
+   eSewa Demo – Design System
+   ============================================= */
+
+/* Google Fonts (Inter) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Design Tokens */
+:root {
+  --font: 'Inter', system-ui, sans-serif;
+  --bg:         #0d0f14;
+  --bg-card:    rgba(255,255,255,0.06);
+  --blur:       blur(16px);
+  --border:     rgba(255,255,255,0.1);
+  --esewa:      #60bb46;
+  --esewa-dark: #4ea335;
+  --text:       #f0f0f0;
+  --muted:      #8b8fa8;
+  --radius:     1rem;
+  --shadow:     0 24px 64px rgba(0,0,0,0.55);
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Gradient background accent */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 30% 20%, rgba(96,187,70,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 80% 80%, rgba(96,187,70,0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Layout */
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* Product Card */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 380px;
+  overflow: hidden;
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Product Image */
+.product-image-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+}
+
+.product-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.card:hover .product-image-wrap img {
+  transform: scale(1.04);
+}
+
+/* Card Body */
+.card-body {
+  padding: 1.6rem 1.8rem 2rem;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--esewa);
+  border: 1px solid rgba(96,187,70,0.35);
+  border-radius: 2rem;
+  padding: 0.22rem 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.product-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.product-description {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1.6rem;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.price-currency {
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+/* Checkout Button */
+.checkout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: var(--esewa);
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.85rem 1.2rem;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+  box-shadow: 0 4px 20px rgba(96,187,70,0.3);
+}
+
+.checkout-btn:hover {
+  background: var(--esewa-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(96,187,70,0.4);
+}
+
+.checkout-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(96,187,70,0.2);
+}
+
+.checkout-btn svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  min-width: 220px;
+  max-width: 320px;
+  background: rgba(20,22,30,0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  animation: slideIn 0.35s ease both;
+  font-size: 0.9rem;
+}
+
+.toast.hidden { display: none; }
+
+.toast.success { border-color: rgba(96,187,70,0.4); }
+.toast.error   { border-color: rgba(255,90,90,0.4); }
+
+.toast-icon { font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+.toast-msg  { line-height: 1.5; }
+.toast-msg strong { display: block; margin-bottom: 0.15rem; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Footer */
+.footer {
+  margin-top: 2.5rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+  .card-body { padding: 1.2rem 1.2rem 1.6rem; }
+  .product-title { font-size: 1.2rem; }
+  .price { font-size: 1.5rem; }
+}
